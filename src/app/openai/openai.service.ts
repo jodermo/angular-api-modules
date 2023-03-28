@@ -16,7 +16,7 @@ export class OpenaiService {
   private openai?: OpenAIApi;
   private configuration?: Configuration;
   public logResponses = false;
-  public useLocalStorage = false;
+  public useLocalStorage = true;
   public connected = false;
   public completions: any[] = [];
   public errors: any[] = [];
