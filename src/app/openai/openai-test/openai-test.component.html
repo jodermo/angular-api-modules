@@ -1,0 +1,111 @@
+<div class="openai-test-component">
+  <div class="openai-test-container">
+    <div class="openai-test-content">
+      <h2>OpenAPI</h2>
+      <table class="openai-request-table">
+        <tbody *ngIf="!openai.connected">
+        <tr>
+          <th>
+            API Key
+          </th>
+          <td>
+            <input type="text" name="api_key" [(ngModel)]="openai.apiKey" placeholder="API Key"/>
+            <label>
+              Store in local storage
+              <input type="checkbox" name="use_local_storage" [(ngModel)]="openai.useLocalStorage" >
+            </label>
+
+
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button (click)="startOpenai()">Connect to API</button>
+          </td>
+        </tr>
+        </tbody>
+        <tbody *ngIf="openai.connected">
+        <tr>
+          <th>
+            API Key
+          </th>
+          <td>
+            <h3>{{openai.apiKey}}</h3>
+            <button (click)="openai.disconnect();">Disconnect</button>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Engine
+          </th>
+          <td>
+            <select [(ngModel)]="openai.model" placeholder="Model" (ngModelChange)="openai.setModel($event)">
+              <option *ngFor="let engine of openai.engines" [value]="engine.id">{{engine.id}}</option>
+            </select>
+          </td>
+        </tr>
+        <tr *ngIf="openai.model">
+          <th>
+            Prompt
+          </th>
+          <td>
+        <textarea name="completion_prompt" [(ngModel)]="openai.prompt" placeholder="Prompt">
+        </textarea>
+          </td>
+        </tr>
+        <tr *ngIf="openai.model && openai.prompt">
+          <td colspan="2">
+            <button (click)="openai.createCompletion()">Create Completion</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="openai-test-content" *ngIf="openai.connected">
+      <h2>Responses</h2>
+      <table class="openai-response-table">
+        <tbody *ngIf="openai.completions.length > 0">
+        <ng-container *ngFor="let completion of openai.completions">
+          <tr>
+            <td>
+              <b>{{openai.timestamp(completion.created)}}</b><br>
+              <i>{{completion.model}} ({{completion.object}})</i>
+            </td>
+            <th>
+              <ng-container *ngIf="completion.choices">
+
+                <span *ngFor="let choice of completion.choices">
+                 {{choice.text}}
+                </span>
+              </ng-container>
+            </th>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <div class="openai-test-content" *ngIf="openai.errors.length > 0">
+      <h2>Errors</h2>
+      <table class="openai-error-table">
+        <tbody >
+        <ng-container *ngFor="let error of openai.errors">
+          <tr>
+            <th>
+              <b>Error: {{openai.timestamp(error.time)}}</b>
+            </th>
+            <td>
+              {{openai.parseError(error.error)}}
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="copyright">
+    <span>© 2023 - Moritz Petzka</span>
+    <a href="https://petzka.com" target="_blank">petzka.com</a>
+    <span>info@petzka.com</span>
+    <span>Repository:   <a href="https://github.com/jodermo/php-test-server/" target="_blank">https://github.com/jodermo/php-test-server</a></span>
+  </div>
+</div>
