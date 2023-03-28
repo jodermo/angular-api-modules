@@ -79,18 +79,20 @@
       width: 100%;
       height: 100%;
       padding: 5px;
-
+      vertical-align: top;
 
       th {
         text-align: right;
         padding: 10px 5px;
         border-bottom: 1px solid #fff;
+        vertical-align: top;
       }
 
       td {
         text-align: left;
         padding: 10px 5px;
         border-bottom: 1px solid #fff;
+        vertical-align: top;
       }
 
       &.openai-response-table {
@@ -142,7 +144,7 @@
 
   }
 
-  .input-hint{
+  .input-hint {
     font-size: 10px;
   }
 
