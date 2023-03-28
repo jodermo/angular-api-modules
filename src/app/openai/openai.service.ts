@@ -15,15 +15,15 @@ export class OpenaiService {
   };
   private openai?: OpenAIApi;
   private configuration?: Configuration;
-
-  public connected = false;
   public logResponses = false;
+  public useLocalStorage = false;
+  public connected = false;
   public completions: any[] = [];
   public errors: any[] = [];
   public model = "text-davinci-003";
   public prompt = "Hello world";
   public engines: any[] = [];
-  useLocalStorage = true;
+
 
   constructor() {
     this.loadLocalStorage();
