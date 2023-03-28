@@ -17,6 +17,7 @@ export class OpenaiService {
   private configuration?: Configuration;
 
   public connected = false;
+  public logResponses = false;
   public completions: any[] = [];
   public errors: any[] = [];
   public model = "text-davinci-003";
@@ -60,6 +61,9 @@ export class OpenaiService {
         this.openai = new OpenAIApi(this.configuration);
         try {
           this.openai.listEngines().then((response: any) => {
+            if(this.logResponses){
+              console.log('OpenAI listEngines() response', response);
+            }
             this.engines = response.data.data ? response.data.data : response.data ? response.data : response;
             this.connected = true;
           }).catch((error: any) => {
@@ -88,15 +92,16 @@ export class OpenaiService {
     } else {
       localStorage.clear();
     }
-
     if (this.openai) {
-      console.log('createCompletion', this.model, this.prompt);
       try {
         this.openai.createCompletion({
           model: model,
           prompt: prompt,
         }, options).then((completion) => {
-          console.log('createCompletion completion', completion);
+          if(this.logResponses){
+            console.log('OpenAI createCompletion() request', model, prompt);
+            console.log('OpenAI createCompletion() response', completion);
+          }
           this.completions.push((completion.data ? completion.data : completion));
           if (onSuccess) {
             onSuccess(completion);

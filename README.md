@@ -1,4 +1,19 @@
-# AngularApiModules
+# API Module For Angular
+##### *© 2023 - Moritz Petzka - [petzka.com](https://petzka.com/)*
+
+Example:[https://api.dont-use.com](https://https://api.dont-use.com/)
+
+##### Install Node.js
+
+- Download: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+
+
+##### Install Angular CLI and npm-run-all
+
+- Run: `npm install -g @angular/cli`
+- Run: `npm install -g npm-run-all`
+
+<br>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
 
