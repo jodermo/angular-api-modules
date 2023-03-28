@@ -6,10 +6,6 @@ import {OpenaiComponent} from "../openai.component";
   templateUrl: './openai-test.component.html',
   styleUrls: ['./openai-test.component.scss']
 })
-export class OpenaiTestComponent extends OpenaiComponent implements AfterViewInit{
+export class OpenaiTestComponent extends OpenaiComponent {
 
-  ngAfterViewInit() {
-    this.openai.logResponses = true;
-    this.openai.useLocalStorage = true;
-  }
 }

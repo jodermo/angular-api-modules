@@ -105,7 +105,6 @@ Source: [/openai/openai-test/openai-test.component.ts](./openai-test/openai-test
                 </td>
                 <th>
                   <ng-container *ngIf="completion.choices">
-
                 <span *ngFor="let choice of completion.choices">
                  {{choice.text}}
                 </span>
@@ -155,25 +154,21 @@ Source: [/openai/openai-test/openai-test.component.ts](./openai-test/openai-test
             </i>
           </td>
         </tr>
-
         <tr>
           <th>
             Options
           </th>
           <td>
-            <div class="field-group">
-              <label class="checkbox-container">
-                <input type="checkbox" name="use_local_storage" [(ngModel)]="openai.useLocalStorage">
-                Store input data in local storage
-              </label>
-              <label class="checkbox-container">
-                <input type="checkbox" name="use_log_responses" [(ngModel)]="openai.logResponses">
-                Log responses in JavaScript console
-              </label>
-            </div>
+            <label class="checkbox-container">
+              <input type="checkbox" name="use_local_storage" [(ngModel)]="openai.useLocalStorage">
+              Store input data in local storage <i>(will be removed, when disconnect gets clicked)</i>
+            </label><br>
+            <label class="checkbox-container">
+              <input type="checkbox" name="use_log_responses" [(ngModel)]="openai.logResponses">
+              Log responses in JavaScript console
+            </label>
           </td>
         </tr>
-
         <tr>
           <td colspan="2">
             <button class="full-width" (click)="startOpenai()">Connect to API</button>
